@@ -1,126 +1,120 @@
-// ----------------------------
-// VisionAI Web Detector
-// Using Roboflow Hosted Web Inference
-// ----------------------------
-
 const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const output = document.getElementById("component-output");
 
-const infoBox = document.getElementById("component-info");
-
-// Your model details
+// Your Roboflow Model Details
 const API_KEY = "rl4raGRK85cElw7CtZQI";
 const MODEL_ID = "my-first-project-lmqc4/5";
 
-// Mapping classes → descriptions
-const componentDescriptions = {
-  "resistor": "A resistor limits the flow of electrical current in a circuit.",
-  "LED": "A Light Emitting Diode that glows when current passes through it.",
-  "capacitor": "A capacitor stores and releases electrical energy.",
-  "electrolytic-capacitor": "A polarized capacitor used for higher-capacitance applications.",
-  "microprocessor": "A miniature CPU used to execute instructions and process data.",
-  "microchip": "A small semiconductor device containing integrated circuits.",
-  "memory-chip": "Used to store digital data temporarily or permanently.",
-  "transistor": "A transistor amplifies or switches electronic signals.",
-  "junction-transistor": "A transistor that uses a PN junction for switching or amplification.",
-  "PNP-transistor": "A bipolar transistor used for switching and amplification.",
-  "semiconductor-diode": "A diode allows current to flow in only one direction.",
-  "electric-relay": "An electromechanical switch used to control circuits.",
-  "heat-sink": "A component that dissipates heat from electronics.",
-  "pulse-generator": "Produces electronic pulses for timing and control.",
-  "attenuator": "Reduces signal strength without distortion.",
-  "induction-coil": "Generates high-voltage pulses from low-voltage sources."
+// Component Information Dictionary
+const COMPONENT_DETAILS = {
+    "resistor": {
+        img: "images/resistor.jpg",
+        text: "A resistor limits current flow. It is used to protect circuits, divide voltage, and control signal levels."
+    },
+    "capacitor": {
+        img: "images/capacitor.jpg",
+        text: "Capacitors store electrical energy temporarily. Commonly used for filtering, timing, and energy buffering."
+    },
+    "transistor": {
+        img: "images/transistor.jpg",
+        text: "A transistor amplifies or switches electronic signals. It’s the fundamental building block of modern electronics."
+    },
+    "led": {
+        img: "images/led.jpg",
+        text: "LEDs emit light when current passes through them. They are energy efficient and used in indicators and displays."
+    },
+    "microprocessor": {
+        img: "images/microprocessor.jpg",
+        text: "A microprocessor is the brain of a computer system — executing instructions and managing logic operations."
+    },
+    "pulse_generator": {
+        img: "images/pulse_generator.jpg",
+        text: "Pulse generators produce electrical waveforms used for testing, clock signals, and triggering events."
+    },
+    "heatsink": {
+        img: "images/heatsink.jpg",
+        text: "A heatsink dissipates heat from components like processors and power transistors to prevent overheating."
+    }
 };
 
-// ----------------------------
 // Start Webcam
-// ----------------------------
-async function startWebcam() {
-  const stream = await navigator.mediaDevices.getUserMedia({
-    video: { facingMode: "environment" },
-    audio: false,
-  });
+async function setupCamera() {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    video.srcObject = stream;
 
-  video.srcObject = stream;
+    return new Promise(resolve => {
+        video.onloadedmetadata = () => resolve(video);
+    });
+}
 
-  video.onloadedmetadata = () => {
+// Call Roboflow API for inference
+async function detectFrame() {
+    const modelURL = `https://detect.roboflow.com/${MODEL_ID}?api_key=${API_KEY}`;
+    
+    const offscreen = document.createElement("canvas");
+    offscreen.width = video.videoWidth;
+    offscreen.height = video.videoHeight;
+    const offCtx = offscreen.getContext("2d");
+    offCtx.drawImage(video, 0, 0);
+
+    const imgData = offscreen.toDataURL("image/jpeg").split(",")[1];
+
+    const response = await fetch(modelURL, {
+        method: "POST",
+        body: imgData
+    });
+
+    const result = await response.json();
+    drawDetections(result);
+    requestAnimationFrame(detectFrame);
+}
+
+// Draw boxes & update info panel
+function drawDetections(result) {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
-    detectLoop();
-  };
-}
 
-startWebcam();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(video, 0, 0);
 
-// ----------------------------
-// Roboflow Inference Function
-// ----------------------------
-async function inferFrame() {
-  const img = canvas.toDataURL("image/jpeg");
-
-  const response = await fetch(
-    `https://detect.roboflow.com/${MODEL_ID}?api_key=${API_KEY}`,
-    {
-      method: "POST",
-      body: img.replace("data:image/jpeg;base64,", ""),
+    if (!result?.predictions?.length) {
+        output.innerHTML = "<p>No component detected...</p>";
+        return;
     }
-  );
 
-  return response.json();
-}
+    const obj = result.predictions[0];
+    const { x, y, width, height, class: label, confidence } = obj;
 
-// ----------------------------
-// Detection Loop
-// ----------------------------
-async function detectLoop() {
-  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-  try {
-    const predictions = await inferFrame();
-    drawBoxes(predictions.predictions);
-    updateInfo(predictions.predictions);
-  } catch (err) {
-    console.error("Error:", err);
-  }
-
-  requestAnimationFrame(detectLoop);
-}
-
-// ----------------------------
-// Draw Bounding Boxes
-// ----------------------------
-function drawBoxes(preds) {
-  preds.forEach((p) => {
-    ctx.strokeStyle = "#00ffcc";
+    // Draw bounding box
+    ctx.strokeStyle = "#00ff88";
     ctx.lineWidth = 3;
-    ctx.strokeRect(p.x - p.width / 2, p.y - p.height / 2, p.width, p.height);
+    ctx.strokeRect(x - width / 2, y - height / 2, width, height);
 
-    ctx.fillStyle = "#00ffcc";
+    ctx.fillStyle = "#00ff88";
     ctx.font = "18px Poppins";
-    ctx.fillText(
-      `${p.class} (${(p.confidence * 100).toFixed(1)}%)`,
-      p.x - p.width / 2,
-      p.y - p.height / 2 - 5
-    );
-  });
+    ctx.fillText(`${label} (${(confidence * 100).toFixed(1)}%)`, x - width / 2, y - height / 2 - 10);
+
+    // Update information panel
+    const info = COMPONENT_DETAILS[label.toLowerCase()];
+    if (info) {
+        output.innerHTML = `
+            <img src="${info.img}" alt="${label}">
+            <h3>${label.toUpperCase()}</h3>
+            <p><strong>Confidence:</strong> ${(confidence * 100).toFixed(1)}%</p>
+            <p>${info.text}</p>
+        `;
+    } else {
+        output.innerHTML = `
+            <h3>${label.toUpperCase()}</h3>
+            <p>Confidence: ${(confidence * 100).toFixed(1)}%</p>
+            <p>No additional information available.</p>
+        `;
+    }
 }
 
-// ----------------------------
-// Update Component Info
-// ----------------------------
-function updateInfo(preds) {
-  if (preds.length === 0) {
-    infoBox.innerHTML = "<p>No component detected.</p>";
-    return;
-  }
-
-  const top = preds[0];
-  const desc = componentDescriptions[top.class] || "No description available.";
-
-  infoBox.innerHTML = `
-    <h2>Detected Component: ${top.class}</h2>
-    <p><strong>Confidence:</strong> ${(top.confidence * 100).toFixed(1)}%</p>
-    <p>${desc}</p>
-  `;
-}
+// Start App
+setupCamera().then(() => {
+    detectFrame();
+});
