@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VisionAI – Home</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - AI Vision App</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav>
-  <a href="index.html">Home</a>
+  <a href="index.html" class="active">Home</a>
   <a href="detect.html">Detect</a>
   <a href="about.html">About</a>
 </nav>
 
-<header class="hero">
-  <h1>Welcome to VisionAI</h1>
-  <p>Your real-time AI object detection directly in your browser.</p>
-  <a class="button" href="detect.html">Start Detecting</a>
-</header>
+<section class="page-section">
+  <h1>Welcome to AI Vision</h1>
+  <p>An interactive real-time computer vision app powered by Roboflow and JavaScript.</p>
+  <p>Click below to begin detecting objects with your camera.</p>
 
-<section class="section">
-  <h2>What VisionAI Does</h2>
-  <p>VisionAI uses your webcam along with a custom Roboflow machine learning model to detect objects live in real time.</p>
+  <a href="detect.html" style="font-size:20px; padding:12px 28px; background:#00c8ff; color:#fff; text-decoration:none; border-radius:8px; display:inline-block; margin-top:20px;">
+    Start Detecting
+  </a>
 </section>
-
-<footer>
-  <p>© 2025 VisionAI • Powered by Roboflow & WebRTC</p>
-</footer>
 
 </body>
 </html>
