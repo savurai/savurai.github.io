@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  color: #222;
+}
+
+nav {
+  background: #111;
+  padding: 15px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #0077ff, #00c1a1);
+  color: white;
+}
+
+.hero .button {
+  display: inline-block;
+  padding: 12px 25px;
+  background: white;
+  color: #0077ff;
+  font-size: 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.section {
+  padding: 40px;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #eee;
+  margin-top: 40px;
+}
+
+.center {
+  text-align: center;
+}
+
+.detect-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-top: 30px;
+}
+
+video, canvas {
+  border-radius: 10px;
+  width: 70%;
+  max-width: 900px;
+  height: auto;
+  position: absolute;
+}
