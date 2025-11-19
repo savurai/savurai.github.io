@@ -1,40 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About VisionAI</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav>
   <a href="index.html">Home</a>
   <a href="detect.html">Detect</a>
-  <a href="about.html">About</a>
+  <a href="about.html" class="active">About</a>
 </nav>
 
-<section class="section">
-  <h1>About VisionAI</h1>
-  <p>
-    VisionAI is a browser-based object detection app built using:
-  </p>
+<section class="page-section">
+  <h1>About This App</h1>
 
-  <ul>
-    <li><a href="https://roboflow.com" target="_blank">Roboflow</a> – for training the detection model</li>
-    <li><a href="https://github.com/roboflow/inference" target="_blank">Roboflow Inference SDK</a> – for running the model</li>
-    <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia" target="_blank">WebRTC getUserMedia</a> – for accessing the webcam</li>
-    <li>HTML / CSS / JavaScript – for building the UI</li>
+  <p>This application uses computer vision technology to detect objects in real time using your device’s camera.</p>
+
+  <h2>How it was built</h2>
+
+  <ul style="list-style:none; padding:0; font-size:18px;">
+    <li>✔ Trained using <a href="https://roboflow.com" target="_blank">Roboflow</a></li>
+    <li>✔ Inference powered by Roboflow Hosted API</li>
+    <li>✔ Frontend built with HTML, CSS, and JavaScript</li>
+    <li>✔ Canvas used for drawing bounding boxes</li>
   </ul>
 
-  <p>
-    The custom model used in this project is trained specifically for your categories and deployed using the Roboflow Serverless API.
-  </p>
+  <p>Designed and developed for learning, experimentation, and AI computer vision demos.</p>
 </section>
-
-<footer>
-  <p>© 2025 VisionAI • Built using Roboflow + JavaScript</p>
-</footer>
 
 </body>
 </html>
