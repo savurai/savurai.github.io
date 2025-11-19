@@ -1,35 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VisionAI — About</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="bg">
+  <header class="nav">
+    <div class="brand">VisionAI</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="detect.html">Detector</a>
+      <a href="about.html" class="active">About</a>
+    </nav>
+  </header>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="detect.html">Detect</a>
-  <a href="about.html" class="active">About</a>
-</nav>
+  <main class="about-main">
+    <section class="glass content">
+      <h1>About This Project</h1>
 
-<section class="page-section">
-  <h1>About This App</h1>
+      <p>
+        This project demonstrates an end-to-end object detection pipeline that uses Roboflow for dataset management and model hosting,
+        and a lightweight browser frontend to run live detections from your webcam.
+      </p>
 
-  <p>This application uses computer vision technology to detect objects in real time using your device’s camera.</p>
+      <h2>How it works</h2>
+      <ul>
+        <li><strong>Dataset & Training:</strong> Images were annotated and augmented using Roboflow, then trained with a YOLO-family detector on Roboflow cloud GPUs.</li>
+        <li><strong>Model Hosting:</strong> The trained model is published via Roboflow Serverless/Hosted Inference API for easy integration into web or mobile apps.</li>
+        <li><strong>Frontend:</strong> A simple HTML/CSS/JS UI captures camera frames, sends them to Roboflow for inference, and visualizes detections with an HTML5 canvas.</li>
+      </ul>
 
-  <h2>How it was built</h2>
+      <h2>Key tools & links</h2>
+      <ul>
+        <li><a href="https://roboflow.com" target="_blank">Roboflow</a> — dataset management, augmentation, cloud training, hosted inference</li>
+        <li><a href="https://yolov8.rtfd.io" target="_blank">YOLO (family)</a> — popular object detection architectures used in industry</li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia" target="_blank">getUserMedia / WebRTC</a> — webcam capture in browser</li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API" target="_blank">Canvas API</a> — drawing overlays and labels</li>
+      </ul>
 
-  <ul style="list-style:none; padding:0; font-size:18px;">
-    <li>✔ Trained using <a href="https://roboflow.com" target="_blank">Roboflow</a></li>
-    <li>✔ Inference powered by Roboflow Hosted API</li>
-    <li>✔ Frontend built with HTML, CSS, and JavaScript</li>
-    <li>✔ Canvas used for drawing bounding boxes</li>
-  </ul>
+      <h2>Dataset & Classes</h2>
+      <p>The model recognizes common electronic components used in lab and prototyping workflows:</p>
+      <ul>
+        <li><strong>Resistors</strong> — passive components that oppose current</li>
+        <li><strong>Pulse generators</strong> — devices that produce pulses for testing circuits</li>
+        <li><strong>Microprocessors</strong> — CPU units found on boards</li>
+        <li><strong>Transistors</strong> — active semiconductor devices used as switches/amplifiers</li>
+        <li><strong>LED</strong> — light emitting diodes</li>
+        <li><strong>Capacitors</strong> — energy storage passive components</li>
+        <li><strong>Heatsink</strong> — thermal dissipation hardware</li>
+      </ul>
 
-  <p>Designed and developed for learning, experimentation, and AI computer vision demos.</p>
-</section>
+      <h2>Credits</h2>
+      <p>Built by VisionAI team • Model & inference courtesy of Roboflow • Frontend built with Web standards.</p>
+    </section>
+  </main>
 
+  <footer class="site-footer">
+    <div>© 2025 VisionAI</div>
+  </footer>
 </body>
 </html>
