@@ -1,115 +1,116 @@
+/* ------------------------------
+   GLOBAL STYLES
+------------------------------ */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0d0d0d;
+  font-family: "Poppins", sans-serif;
+  background: #0b0f19;
   color: white;
+  text-align: center;
 }
 
 nav {
-  background: #111;
-  padding: 15px 40px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #333;
-}
-
-nav .logo {
-  font-size: 22px;
-  font-weight: bold;
-  color: #4da6ff;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+  font-size: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
 }
 
 nav a {
-  color: #ccc;
-  margin-left: 22px;
+  color: #00ffc8;
   text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
-nav a.active,
 nav a:hover {
   color: white;
+  text-shadow: 0 0 10px #00ffc8;
 }
 
-.hero,
-.sub-hero {
-  text-align: center;
+/* ------------------------------
+   HERO SECTION
+------------------------------ */
+.hero {
   padding: 120px 20px;
-  background: linear-gradient(135deg, #001a33, #000);
+  background: linear-gradient(135deg, #0b0f19, #112233);
 }
 
-.hero h1 span {
-  color: #4da6ff;
+.hero h1 {
+  font-size: 60px;
+  margin-bottom: 10px;
+  color: #00ffc8;
+}
+
+.hero p {
+  font-size: 20px;
+  margin-bottom: 25px;
 }
 
 .button {
   display: inline-block;
-  margin-top: 20px;
-  padding: 12px 25px;
-  background: #4da6ff;
-  border-radius: 8px;
-  color: black;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.section {
-  padding: 60px;
-  max-width: 900px;
-  margin: auto;
-  line-height: 1.7;
-}
-
-.features {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 40px;
-}
-
-.card {
-  background: #111;
-  padding: 25px;
-  border-radius: 12px;
-  width: 220px;
-  text-align: center;
-  border: 1px solid #1e1e1e;
-}
-
-.center {
-  text-align: center;
-  margin-top: 40px;
-}
-
-.detect-container {
-  position: relative;
-  width: 700px;
-  max-width: 90%;
-  margin: 40px auto;
-}
-
-#video,
-#canvas {
-  width: 100%;
+  padding: 12px 26px;
+  background: #00ffc8;
+  color: #0b0f19;
   border-radius: 10px;
-  display: block;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+  transition: 0.3s;
 }
 
-#info-box {
-  margin: 40px auto;
-  padding: 20px;
-  width: 700px;
-  max-width: 90%;
-  background: #111;
-  border-radius: 12px;
-  border: 1px solid #1e1e1e;
+.button:hover {
+  background: white;
+}
+
+/* ------------------------------
+   DETECTION PAGE
+------------------------------ */
+.detect-container {
+  margin: 30px auto;
+  width: 90%;
+  max-width: 900px;
+  position: relative;
+}
+
+video, canvas {
+  width: 100%;
+  border-radius: 20px;
+  background: black;
+}
+
+/* ------------------------------
+   INFO BOX FOR DETECTED PARTS
+------------------------------ */
+.info-box {
+  margin: 25px auto;
+  padding: 25px;
+  width: 85%;
+  max-width: 900px;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+
+  text-align: left;
+  color: white;
   line-height: 1.6;
 }
 
+.info-box h2 {
+  color: #00ffc8;
+  margin-bottom: 10px;
+}
+
+/* ------------------------------
+   FOOTER
+------------------------------ */
 footer {
-  text-align: center;
-  padding: 30px;
-  margin-top: 60px;
-  background: #080808;
-  border-top: 1px solid #222;
+  margin-top: 80px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
 }
