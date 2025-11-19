@@ -1,35 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VisionAI – Detect</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VisionAI – Live Detection</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
 <nav>
-  <div class="logo">VisionAI</div>
-  <div class="links">
-    <a href="index.html">Home</a>
-    <a href="detect.html" class="active">Detect</a>
-    <a href="about.html">About</a>
-  </div>
+  <a href="index.html">Home</a>
+  <a href="detect.html">Detect</a>
+  <a href="about.html">About</a>
 </nav>
 
-<h1 class="center">Live Component Detection</h1>
+<h1 class="center">🔍 Live Component Detection</h1>
 
 <div class="detect-container">
   <video id="video" autoplay playsinline></video>
   <canvas id="canvas"></canvas>
 </div>
 
-<div id="info-box">
-  <h3>Detected Component</h3>
-  <p id="component-name">—</p>
-  <p id="component-desc">Point your camera at a component.</p>
+<div id="component-info" class="info-box">
+  <p>Waiting for component detection...</p>
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
