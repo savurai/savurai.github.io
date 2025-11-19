@@ -1,64 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>VisionAI — About</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VisionAI – About</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg">
-  <header class="nav">
-    <div class="brand">VisionAI</div>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="detect.html">Detector</a>
-      <a href="about.html" class="active">About</a>
-    </nav>
-  </header>
+<body>
 
-  <main class="about-main">
-    <section class="glass content">
-      <h1>About This Project</h1>
+<nav>
+  <div class="logo">VisionAI</div>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="detect.html">Detect</a>
+    <a href="about.html" class="active">About</a>
+  </div>
+</nav>
 
-      <p>
-        This project demonstrates an end-to-end object detection pipeline that uses Roboflow for dataset management and model hosting,
-        and a lightweight browser frontend to run live detections from your webcam.
-      </p>
+<header class="sub-hero">
+  <h1>About VisionAI</h1>
+  <p>The story behind the project</p>
+</header>
 
-      <h2>How it works</h2>
-      <ul>
-        <li><strong>Dataset & Training:</strong> Images were annotated and augmented using Roboflow, then trained with a YOLO-family detector on Roboflow cloud GPUs.</li>
-        <li><strong>Model Hosting:</strong> The trained model is published via Roboflow Serverless/Hosted Inference API for easy integration into web or mobile apps.</li>
-        <li><strong>Frontend:</strong> A simple HTML/CSS/JS UI captures camera frames, sends them to Roboflow for inference, and visualizes detections with an HTML5 canvas.</li>
-      </ul>
+<section class="section">
+  <h2>How It Was Built</h2>
+  <p>
+    VisionAI is built using a combination of modern AI and web technologies:
+  </p>
+  <ul>
+    <li><b>Roboflow</b> – dataset creation, annotation, augmentation, and model hosting.</li>
+    <li><b>YOLO11</b> – state-of-the-art object detection architecture.</li>
+    <li><b>JavaScript + WebRTC</b> – for live webcam video streaming.</li>
+    <li><b>HTML/CSS</b> – to create this clean, responsive UI.</li>
+  </ul>
+  <p>
+    The detector supports 16 electronic component classes including transistors,
+    capacitors, LEDs, heatsinks, diodes, and microprocessors.
+  </p>
+</section>
 
-      <h2>Key tools & links</h2>
-      <ul>
-        <li><a href="https://roboflow.com" target="_blank">Roboflow</a> — dataset management, augmentation, cloud training, hosted inference</li>
-        <li><a href="https://yolov8.rtfd.io" target="_blank">YOLO (family)</a> — popular object detection architectures used in industry</li>
-        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia" target="_blank">getUserMedia / WebRTC</a> — webcam capture in browser</li>
-        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API" target="_blank">Canvas API</a> — drawing overlays and labels</li>
-      </ul>
+<section class="section">
+  <h2>Useful Links</h2>
+  <ul>
+    <li><a href="https://roboflow.com" target="_blank">Roboflow</a></li>
+    <li><a href="https://github.com/ultralytics/ultralytics" target="_blank">YOLO11</a></li>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API" target="_blank">WebRTC Docs</a></li>
+  </ul>
+</section>
 
-      <h2>Dataset & Classes</h2>
-      <p>The model recognizes common electronic components used in lab and prototyping workflows:</p>
-      <ul>
-        <li><strong>Resistors</strong> — passive components that oppose current</li>
-        <li><strong>Pulse generators</strong> — devices that produce pulses for testing circuits</li>
-        <li><strong>Microprocessors</strong> — CPU units found on boards</li>
-        <li><strong>Transistors</strong> — active semiconductor devices used as switches/amplifiers</li>
-        <li><strong>LED</strong> — light emitting diodes</li>
-        <li><strong>Capacitors</strong> — energy storage passive components</li>
-        <li><strong>Heatsink</strong> — thermal dissipation hardware</li>
-      </ul>
+<footer>
+  <p>© 2025 VisionAI • Developed with ❤️ and AI</p>
+</footer>
 
-      <h2>Credits</h2>
-      <p>Built by VisionAI team • Model & inference courtesy of Roboflow • Frontend built with Web standards.</p>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div>© 2025 VisionAI</div>
-  </footer>
 </body>
 </html>
