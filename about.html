@@ -1,71 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>About This App</title>
-
-<style>
-body {
-    margin: 0;
-    background: #0a0a0a;
-    font-family: Arial, sans-serif;
-    color: white;
-}
-nav {
-    background: #111;
-    padding: 15px;
-}
-nav a {
-    color: white;
-    margin: 0 20px;
-    font-size: 18px;
-    text-decoration: none;
-}
-nav a:hover {
-    color: #00ff88;
-}
-.container {
-    padding: 60px;
-}
-h1 {
-    color: #00ff88;
-}
-p {
-    font-size: 20px;
-    line-height: 1.7;
-}
-a {
-    color: #00ff88;
-}
-</style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About VisionAI</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <nav>
-    <a href="index.html">Home</a>
-    <a href="detect.html">Detector</a>
-    <a href="about.html">About</a>
+  <a href="index.html">Home</a>
+  <a href="detect.html">Detect</a>
+  <a href="about.html">About</a>
 </nav>
 
-<div class="container">
-    <h1>About This Project</h1>
-    <p>
-        This AI-powered detection system was built using a combination of modern tools:
-    </p>
+<section class="section">
+  <h1>About VisionAI</h1>
+  <p>
+    VisionAI is a browser-based object detection app built using:
+  </p>
 
-    <ul>
-        <li><a href="https://roboflow.com" target="_blank">Roboflow</a> — dataset management + model training</li>
-        <li><a href="https://flutter.dev" target="_blank">Flutter</a> — cross-platform UI framework</li>
-        <li><a href="https://fastapi.tiangolo.com" target="_blank">FastAPI</a> — backend server</li>
-        <li>The website version uses HTML, CSS, and JavaScript for live inference</li>
-    </ul>
+  <ul>
+    <li><a href="https://roboflow.com" target="_blank">Roboflow</a> – for training the detection model</li>
+    <li><a href="https://github.com/roboflow/inference" target="_blank">Roboflow Inference SDK</a> – for running the model</li>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia" target="_blank">WebRTC getUserMedia</a> – for accessing the webcam</li>
+    <li>HTML / CSS / JavaScript – for building the UI</li>
+  </ul>
 
-    <p>
-        The YOLO-based model detects components in real time using your webcam.  
-        Bounding boxes and confidence scores are drawn directly on the canvas with no delays.
-    </p>
-</div>
+  <p>
+    The custom model used in this project is trained specifically for your categories and deployed using the Roboflow Serverless API.
+  </p>
+</section>
+
+<footer>
+  <p>© 2025 VisionAI • Built using Roboflow + JavaScript</p>
+</footer>
 
 </body>
 </html>
