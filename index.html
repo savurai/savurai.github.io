@@ -1,42 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>VisionAI — Home</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VisionAI – Home</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg">
-  <header class="nav">
-    <div class="brand">VisionAI</div>
-    <nav class="nav-links">
-      <a href="index.html" class="active">Home</a>
-      <a href="detect.html">Detector</a>
-      <a href="about.html">About</a>
-    </nav>
-  </header>
+<body>
 
-  <main class="center-hero">
-    <div class="glass hero-card">
-      <h1>Smart Component Detection</h1>
-      <p class="lead">
-        Real-time object detection built with Roboflow and delivered in your browser.
-        Detect electronics components using your webcam — no installation required.
-      </p>
+<nav>
+  <div class="logo">VisionAI</div>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="detect.html">Detect</a>
+    <a href="about.html">About</a>
+  </div>
+</nav>
 
-      <div class="cta-row">
-        <a class="btn" href="detect.html">Start Detector</a>
-        <a class="btn ghost" href="about.html">Learn more</a>
-      </div>
+<header class="hero">
+  <h1>Welcome to <span>VisionAI</span></h1>
+  <p>Your browser-powered electronics component detection system.</p>
+  <a class="button" href="detect.html">Start Detecting</a>
+</header>
 
-      <div class="foot-note">
-        Model: <strong>my-first-project-lmqc4/5</strong> • Client-side inference via Roboflow
-      </div>
-    </div>
-  </main>
+<section class="section">
+  <h2>What is VisionAI?</h2>
+  <p>
+    VisionAI uses state-of-the-art YOLO11 object detection combined with a custom
+    Roboflow-trained dataset to identify electronic components directly through
+    your webcam – all running locally inside your browser.
+  </p>
+</section>
 
-  <footer class="site-footer">
-    <div>© 2025 VisionAI • Built with Roboflow & browser technologies</div>
-  </footer>
+<section class="features">
+  <div class="card">
+    <h3>⚡ Real-Time</h3>
+    <p>Detect components instantly using WebRTC webcam streaming.</p>
+  </div>
+  <div class="card">
+    <h3>🤖 Custom Model</h3>
+    <p>Built using Roboflow and YOLO11 with 16 electronic hardware classes.</p>
+  </div>
+  <div class="card">
+    <h3>🔍 Accurate</h3>
+    <p>Optimized dataset with thousands of annotated images ensures accuracy.</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 VisionAI • Powered by Roboflow, YOLO11 & WebRTC</p>
+</footer>
+
 </body>
 </html>
