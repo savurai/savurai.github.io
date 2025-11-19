@@ -2,109 +2,115 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Roboflow Webcam Detection</title>
+<title>AI Detection Webcam</title>
+
 <style>
     body {
-        font-family: Arial, sans-serif;
-        background: #121212;
-        color: white;
+        margin: 0;
+        padding: 0;
+        background: #000;
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
+        height: 100vh;
+        overflow: hidden;
     }
-    video, canvas {
-        margin-top: 20px;
-        border-radius: 10px;
-        background: black;
+
+    #video, #canvas {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        border: none;
+        outline: none;
     }
 </style>
 </head>
 <body>
 
-<h2>Roboflow Live Object Detection</h2>
-
-<video id="video" width="640" height="480" autoplay muted></video>
-<canvas id="canvas" width="640" height="480"></canvas>
+<video id="video" autoplay muted></video>
+<canvas id="canvas"></canvas>
 
 <script>
 const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-// ---------------------
-// 1. Start webcam
-// ---------------------
+// -----------------------
+// 1. Start Camera
+// -----------------------
 async function startCamera() {
     const stream = await navigator.mediaDevices.getUserMedia({
-        video: { width: 640, height: 480 }
+        video: { width: 1280, height: 720 }
     });
     video.srcObject = stream;
+
+    video.onloadedmetadata = () => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+    };
 }
 startCamera();
 
-// ---------------------
-// 2. Roboflow Info
-// ---------------------
-const ROBOFLOW_API_KEY = "rl4raGRK85cElw7CtZQI";
-const MODEL_ID = "my-first-project-lmqc4/5"
-;   // example: my-first-project-abc/3
+// -----------------------
+// 2. Roboflow Settings
+// -----------------------
+const API_KEY = "rl4raGRK85cElw7CtZQI";
+const MODEL_ID = "my-first-project-lmqc4/5";
 
-// ---------------------
-// 3. Send frame to Roboflow
-// ---------------------
-async function runModel() {
-    ctx.drawImage(video, 0, 0, 640, 480);
+// -----------------------
+// 3. Draw detections
+// -----------------------
+function drawBoxes(predictions) {
+    ctx.lineWidth = 3;
+    ctx.font = "16px Arial";
+    ctx.textBaseline = "top";
 
-    const imgData = canvas.toDataURL("image/jpeg");
+    predictions.forEach(pred => {
+        const { x, y, width, height, class: label, confidence } = pred;
+
+        const left = x - width / 2;
+        const top = y - height / 2;
+
+        // BOX
+        ctx.strokeStyle = "lime";
+        ctx.strokeRect(left, top, width, height);
+
+        // LABEL
+        const text = `${label} (${(confidence * 100).toFixed(1)}%)`;
+
+        ctx.fillStyle = "lime";
+        ctx.fillText(text, left + 5, top + 5);
+    });
+}
+
+// -----------------------
+// 4. Run Inference Loop
+// -----------------------
+async function detect() {
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    const frame = canvas.toDataURL("image/jpeg");
 
     const res = await fetch(
-        `https://detect.roboflow.com/${MODEL_ID}?api_key=${ROBOFLOW_API_KEY}`,
+        `https://detect.roboflow.com/${MODEL_ID}?api_key=${API_KEY}`,
         {
             method: "POST",
-            body: imgData.split(",")[1], // remove header
+            body: frame.split(",")[1]
         }
     );
 
     const json = await res.json();
-    drawBoxes(json);
 
-    requestAnimationFrame(runModel);
+    if (json.predictions) {
+        drawBoxes(json.predictions);
+    }
+
+    requestAnimationFrame(detect);
 }
 
-// ---------------------
-// 4. Draw bounding boxes
-// ---------------------
-function drawBoxes(data) {
-    ctx.drawImage(video, 0, 0, 640, 480);
-
-    if (!data.predictions) return;
-
-    data.predictions.forEach(pred => {
-        ctx.beginPath();
-        ctx.strokeStyle = "lime";
-        ctx.lineWidth = 3;
-        ctx.rect(
-            pred.x - pred.width / 2,
-            pred.y - pred.height / 2,
-            pred.width,
-            pred.height
-        );
-        ctx.stroke();
-
-        ctx.fillStyle = "lime";
-        ctx.font = "18px Arial";
-        ctx.fillText(
-            `${pred.class} (${Math.round(pred.confidence * 100)}%)`,
-            pred.x - pred.width / 2,
-            pred.y - pred.height / 2 - 10
-        );
-    });
-}
-
-// Start inference when the video is ready
-video.onplaying = () => runModel();
-
+video.onplaying = () => detect();
 </script>
+
 </body>
 </html>
-
