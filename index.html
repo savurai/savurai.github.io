@@ -1,28 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - AI Vision App</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VisionAI — Home</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="bg">
+  <header class="nav">
+    <div class="brand">VisionAI</div>
+    <nav class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="detect.html">Detector</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
 
-<nav>
-  <a href="index.html" class="active">Home</a>
-  <a href="detect.html">Detect</a>
-  <a href="about.html">About</a>
-</nav>
+  <main class="center-hero">
+    <div class="glass hero-card">
+      <h1>Smart Component Detection</h1>
+      <p class="lead">
+        Real-time object detection built with Roboflow and delivered in your browser.
+        Detect electronics components using your webcam — no installation required.
+      </p>
 
-<section class="page-section">
-  <h1>Welcome to AI Vision</h1>
-  <p>An interactive real-time computer vision app powered by Roboflow and JavaScript.</p>
-  <p>Click below to begin detecting objects with your camera.</p>
+      <div class="cta-row">
+        <a class="btn" href="detect.html">Start Detector</a>
+        <a class="btn ghost" href="about.html">Learn more</a>
+      </div>
 
-  <a href="detect.html" style="font-size:20px; padding:12px 28px; background:#00c8ff; color:#fff; text-decoration:none; border-radius:8px; display:inline-block; margin-top:20px;">
-    Start Detecting
-  </a>
-</section>
+      <div class="foot-note">
+        Model: <strong>my-first-project-lmqc4/5</strong> • Client-side inference via Roboflow
+      </div>
+    </div>
+  </main>
 
+  <footer class="site-footer">
+    <div>© 2025 VisionAI • Built with Roboflow & browser technologies</div>
+  </footer>
 </body>
 </html>
