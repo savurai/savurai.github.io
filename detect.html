@@ -1,32 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Detection</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VisionAI — Live Detector</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="bg">
+  <header class="nav">
+    <div class="brand">VisionAI</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="detect.html" class="active">Detector</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="detect.html" class="active">Detect</a>
-  <a href="about.html">About</a>
-</nav>
+  <main class="detect-main">
+    <section class="detect-panel glass">
+      <div class="top-controls">
+        <div class="controls-left">
+          <label>Confidence threshold: <span id="threshVal">0.30</span></label>
+          <input id="thresh" type="range" min="0" max="1" step="0.01" value="0.30" />
+          <label class="small-toggle"><input id="toggleBoxes" type="checkbox" checked /> Show boxes</label>
+        </div>
+        <div class="controls-right">
+          <div class="fps" id="fps">FPS: --</div>
+        </div>
+      </div>
 
-<section class="page-section">
-  <h1>Live Detection</h1>
+      <div class="video-wrap">
+        <!-- single video + canvas overlay -->
+        <div class="video-card">
+          <video id="video" autoplay playsinline muted></video>
+          <canvas id="canvas"></canvas>
+        </div>
 
-  <div class="detect-wrapper">
-    <div class="video-container">
-      <video id="video" autoplay playsinline></video>
-      <canvas id="canvas"></canvas>
-    </div>
-  </div>
+        <aside class="info-card" id="infoCard">
+          <h3>Component Info</h3>
+          <div id="infoContent">
+            <p class="muted">No component detected yet. Move an item into the frame.</p>
+          </div>
+        </aside>
+      </div>
 
-  <p class="note">Camera feed is processed in real time using your Roboflow model.</p>
-</section>
+      <div class="note muted">Tip: Allow camera access and place components clearly in view.</div>
+    </section>
+  </main>
 
-<script src="script.js"></script>
+  <footer class="site-footer">
+    <div>© 2025 VisionAI • Live demo using Roboflow</div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
