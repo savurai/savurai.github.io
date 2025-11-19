@@ -1,55 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Component Detection App</title>
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0a0a0a;
-    color: white;
-    text-align: center;
-}
-nav {
-    background: #111;
-    padding: 15px;
-}
-nav a {
-    color: white;
-    margin: 0 20px;
-    font-size: 18px;
-    text-decoration: none;
-}
-nav a:hover {
-    color: #00ff88;
-}
-.hero {
-    padding: 150px 20px;
-}
-.hero h1 {
-    font-size: 48px;
-    color: #00ff88;
-}
-.hero p {
-    font-size: 22px;
-    margin-top: 20px;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VisionAI – Home</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <nav>
-    <a href="index.html">Home</a>
-    <a href="detect.html">Detector</a>
-    <a href="about.html">About</a>
+  <a href="index.html">Home</a>
+  <a href="detect.html">Detect</a>
+  <a href="about.html">About</a>
 </nav>
 
-<div class="hero">
-    <h1>AI Component Detection App</h1>
-    <p>A real-time machine learning app built using Roboflow, FastAPI, and Flutter/Web.</p>
-    <p>Click Detector to start.</p>
-</div>
+<header class="hero">
+  <h1>Welcome to VisionAI</h1>
+  <p>Your real-time AI object detection directly in your browser.</p>
+  <a class="button" href="detect.html">Start Detecting</a>
+</header>
+
+<section class="section">
+  <h2>What VisionAI Does</h2>
+  <p>VisionAI uses your webcam along with a custom Roboflow machine learning model to detect objects live in real time.</p>
+</section>
+
+<footer>
+  <p>© 2025 VisionAI • Powered by Roboflow & WebRTC</p>
+</footer>
 
 </body>
 </html>
