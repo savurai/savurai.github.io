@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>About This App</title>
+
+<style>
+body {
+    margin: 0;
+    background: #0a0a0a;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+nav {
+    background: #111;
+    padding: 15px;
+}
+nav a {
+    color: white;
+    margin: 0 20px;
+    font-size: 18px;
+    text-decoration: none;
+}
+nav a:hover {
+    color: #00ff88;
+}
+.container {
+    padding: 60px;
+}
+h1 {
+    color: #00ff88;
+}
+p {
+    font-size: 20px;
+    line-height: 1.7;
+}
+a {
+    color: #00ff88;
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="detect.html">Detector</a>
+    <a href="about.html">About</a>
+</nav>
+
+<div class="container">
+    <h1>About This Project</h1>
+    <p>
+        This AI-powered detection system was built using a combination of modern tools:
+    </p>
+
+    <ul>
+        <li><a href="https://roboflow.com" target="_blank">Roboflow</a> — dataset management + model training</li>
+        <li><a href="https://flutter.dev" target="_blank">Flutter</a> — cross-platform UI framework</li>
+        <li><a href="https://fastapi.tiangolo.com" target="_blank">FastAPI</a> — backend server</li>
+        <li>The website version uses HTML, CSS, and JavaScript for live inference</li>
+    </ul>
+
+    <p>
+        The YOLO-based model detects components in real time using your webcam.  
+        Bounding boxes and confidence scores are drawn directly on the canvas with no delays.
+    </p>
+</div>
+
+</body>
+</html>
