@@ -1,64 +1,52 @@
-const API_KEY = "rl4raGRK85cElw7CtZQI";
-const MODEL_ID = "my-first-project-lmqc4/5";
-
 const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-async function startWebcam() {
+const API_KEY = "rl4raGRK85cElw7CtZQI";
+const MODEL_ID = "my-first-project-lmqc4/5";
+
+// Start camera
+async function startCamera() {
   const stream = await navigator.mediaDevices.getUserMedia({ video: true });
   video.srcObject = stream;
-
-  video.onloadedmetadata = () => {
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    detectLoop();
-  };
 }
 
-async function detectLoop() {
-  const inference = await fetch(
+// Call Roboflow API
+async function detectFrame() {
+  const response = await fetch(
     `https://detect.roboflow.com/${MODEL_ID}?api_key=${API_KEY}`,
     {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: await imageToBase64(video),
+      body: video
     }
   );
 
-  const result = await inference.json();
-  drawBoxes(result);
-  requestAnimationFrame(detectLoop);
-}
+  const result = await response.json();
 
-function drawBoxes(result) {
-  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+  // Clear previous
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  if (!result.predictions) return;
-
+  // Draw boxes
   result.predictions.forEach(pred => {
-    const x = pred.x - pred.width / 2;
-    const y = pred.y - pred.height / 2;
+    const { x, y, width, height, class: label } = pred;
 
     ctx.strokeStyle = "lime";
     ctx.lineWidth = 3;
-    ctx.strokeRect(x, y, pred.width, pred.height);
+    ctx.strokeRect(x - width / 2, y - height / 2, width, height);
 
     ctx.fillStyle = "lime";
     ctx.font = "18px Arial";
-    ctx.fillText(`${pred.class} (${(pred.confidence * 100).toFixed(1)}%)`, x, y - 10);
+    ctx.fillText(label, x - width / 2, y - height / 2 - 5);
   });
+
+  requestAnimationFrame(detectFrame);
 }
 
-function imageToBase64(video) {
-  const tempCanvas = document.createElement("canvas");
-  tempCanvas.width = video.videoWidth;
-  tempCanvas.height = video.videoHeight;
-
-  const tempCtx = tempCanvas.getContext("2d");
-  tempCtx.drawImage(video, 0, 0);
-
-  return tempCanvas.toDataURL("image/jpeg").replace("data:image/jpeg;base64,", "");
-}
-
-startWebcam();
+// Run
+startCamera().then(() => {
+  video.addEventListener("playing", () => {
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    detectFrame();
+  });
+});
